@@ -1,0 +1,40 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+
+###Angular
+/node_modules/
+/dist/
+/temp/
+/demo/dist/
+npm-debug.log
+.publish
+.sw*
+.idea
+.vscode
+coverage
+demo/src/api-docs.ts
+demo/src/public/**/plnkr.html
+local.docs.json

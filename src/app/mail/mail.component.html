@@ -1,0 +1,22 @@
+<p>mail works!</p>
+<div class="col-md-6 col-xs-12">
+	<table class="table table-hover table-responsive table-bordered">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Address</th>
+				<th>Subject</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let mail of mails">
+				<th scope="row">{{mail.id}}</th>
+				<td>{{mail.address}}</td>
+				<td>{{mail.subject}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+

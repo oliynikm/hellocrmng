@@ -1,0 +1,51 @@
+
+<p>Non-admin username and password:<br> john.doe and jwtpass</p>
+<p>Admin user:<br> admin.admin and jwtpass</p>
+
+<div  style="border: 1px solid #dddddd ">
+    <form [formGroup]="loginform" (ngSubmit)="login()">
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+
+        <div class="ui-grid-col-12">
+          <input pInputText type="text" class="form-control" formControlName="login" placeholder="Login" />
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <div class="ui-message ui-messages-error ui-corner-all"
+           *ngIf="!loginform.controls['login'].valid&&loginform.controls['login'].dirty">
+            <i class="fa fa-close"></i>
+            firstName is required
+          </div>
+        </div>
+      </div>
+      <div class="ui-grid-row">
+
+        <div class="ui-grid-col-12">
+          <input pInputText type="password" class="form-control" formControlName="password" placeholder="Password" />
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+          <div class="ui-message ui-messages-error ui-corner-all" 
+          *ngIf="!loginform.controls['password'].valid&&loginform.controls['password'].dirty">
+            <i class="fa fa-close"></i>
+            lastName is required
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-grid-row">
+
+        <div class="ui-grid-col-12">
+          <button pButton type="submit" label="Sign In" [disabled]="!loginform.valid"></button>
+        </div>
+
+      </div>
+    </div>
+   
+  </form>
+  </div>
+

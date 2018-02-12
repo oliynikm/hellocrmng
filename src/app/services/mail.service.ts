@@ -1,17 +1,31 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Http, Response} from '@angular/http';
+import { Response} from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class MailService {
 
-  constructor(private _http: Http) {
+  constructor(private _http: AuthHttp) {
   }
 
-  getMails(): Observable<IMail[]> {
+  getUnassignedMessages(): Observable<IMail[]> {
 
-   // return this._http.get('http://localhost:8080/api/users').map((response: Response) => <IMail[]> response.json());
-     return this._http.get('/assets/mail.json').map((response: Response) => <IMail[]> response.json());
+    return this._http.get('/api/emails/unassigned')
+     //return this._http.get('/assets/mail.json')
+      .map((response: Response) =>  <IMail[]> response.json());
+
   }
+
+  getClientMessages(clientId): Observable<IMail[]> {
+    return this._http.get('/api/clients/'+clientId+'/emails')
+      .map((response: Response) =>  <IMail[]> response.json());
+  }
+
+  getMailDetails(emailId): Observable<IMail>{
+    return this._http.get('/api/emails/'+emailId)
+    .map((response: Response) =>  <IMail> response.json());
+  }
+
 }

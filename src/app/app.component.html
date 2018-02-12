@@ -1,11 +1,34 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
+<div *ngIf="isUser">
+  <div class="ui-g">
+    <div>
+      <nav class="ui-g-3 ui-sm-12">
+        <app-menu></app-menu>
+      </nav>
+    </div>
+
+
+
+    <div class="ui-g-9 ui-sm-12">
+      <div class="ui-g-12">
+        <nav>
+          <p-menubar [model]="items">
+            <button pButton label="Receive Emails" icon="fa-refresh" (click)="refreshMailbox()"></button>
+            <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
+          </p-menubar>
+        </nav>
+      </div>
+      <div class="ui-g-12">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!isUser" class="ui-g" style="text-align: center; padding: 200px 0px 0px">
+  <div class="ui-g-4"></div>
+
+  <div class="ui-g-4">
+    <app-login></app-login>
+  </div>
+  <div class="ui-g-4"></div>
 
 </div>
-<h2>Here are some mails </h2>
-<section class="main-container" [ngClass]="{sidebarPushRight: isActive}">
-  <router-outlet></router-outlet>
-</section>

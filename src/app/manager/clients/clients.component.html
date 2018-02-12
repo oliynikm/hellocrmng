@@ -1,0 +1,17 @@
+<div class="col-md-6 col-xs-12">
+    <p-dataTable [value]="clients"  selectionMode="single" [(selection)]="selectedClient" (onRowSelect)="goToClientDetails(selectedClient.id)"
+        [rows]="10" [paginator]="true" [pageLinks]="3" [responsive]="true">
+        <p-header>Clients</p-header>
+        <p-column field="id" header="Id" [sortable]="true"></p-column>
+        <p-column field="firstName" header="First Name" [sortable]="true"></p-column>
+        <p-column field="lastName" header="Last Name" [sortable]="true"></p-column>
+        <p-column field="email" header="Email" [sortable]="true"></p-column>
+        <p-footer>
+            <div class="ui-helper-clearfix" style="width:100%">
+                <button type="button" pButton icon="fa-plus" style="float:left" (click)="addClient()" label="Add"></button>
+            </div>
+        </p-footer>
+    </p-dataTable>
+
+   <app-client-modal #clientModal (onSaved)="onSaved($event)"></app-client-modal>
+</div>

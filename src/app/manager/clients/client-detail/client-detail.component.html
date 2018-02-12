@@ -1,0 +1,11 @@
+<button pButton class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" label="go back" icon="fa-backward" (click)="goBack()"></button>
+<div *ngIf='client'>
+ {{client.id}} : {{client.firstName}} {{client.lastName}}
+ <br>  <div class="ui-helper-clearfix" style="width:100%">
+        <button type="button" pButton icon="fa-plus" style="float:left" (click)="editClient(client)" label="Edit"></button>
+    </div><br>
+ <app-client-mails [clientId]="client.id"></app-client-mails> 
+</div>
+<app-client-modal #clientModal (onSaved)="onSaved($event)"></app-client-modal>
+
+

@@ -43,7 +43,7 @@ export function authHttpServiceFactory(http: Http) {
     BrowserModule,
     MenubarModule,
     HttpModule,
-    ManagerModule,
+    ManagerModule, 
     PanelMenuModule,
     DialogModule,
     MenuModule,

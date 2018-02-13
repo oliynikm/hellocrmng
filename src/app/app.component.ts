@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import {PanelMenuModule,MenuModule,MenuItem} from 'primeng/primeng';
 import { MailboxService } from './services/mailbox.service';
 import { UserService } from './services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,11 @@ export class AppComponent {
   title = 'app';
   
 
-  constructor(private router: Router,private _mailboxService: MailboxService,
-     private userService: UserService , private cdRef:ChangeDetectorRef) { }
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private _mailboxService: MailboxService,
+     private userService: UserService , 
+     private cdRef:ChangeDetectorRef) { }
 
   ngOnInit() {
     this.items = [
@@ -26,9 +29,9 @@ export class AppComponent {
 private refreshMailbox() {
   this._mailboxService.refreshMailbox()
   .subscribe(
-    mails => console.log(mails)
+    t => console.log(t.message)
   );
-  location.reload();
+//TODO: show message 'refreshed'
 }
 
 get isUser() {

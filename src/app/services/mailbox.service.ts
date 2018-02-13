@@ -10,9 +10,9 @@ export class MailboxService {
   constructor(private _http: AuthHttp) {
   }
 
-  refreshMailbox():  Observable<IMail[]>  {
-    console.log('refreshing..1');
+  refreshMailbox():  Observable<any> {
+    console.log('refreshing...');
     return this._http.get('/api/mailbox')
-    .map((response: Response) =>  <IMail[]> response.json());
+    .map((response: Response) =>  response.json() );
   }
 }

@@ -5,20 +5,23 @@ import {ClientsComponent} from './clients/clients.component';
 import { ClientDetailComponent } from './clients/client-detail/client-detail.component';
 import { MailDetailComponent } from './mail/mail-detail/mail-detail.component';
 import { ManagerComponent } from './manager.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 const managerRoutes: Routes = [
-  {path: 'manager/mail', component: MailComponent},
-  {path: 'manager/', component: ManagerComponent},
-  {path: 'manager/mail/:emailId', component: MailDetailComponent},
-  {path: 'manager/clients', component: ClientsComponent},
-  {path: 'manager/client/:clientId', component: ClientDetailComponent},
-  {path: '**', redirectTo: 'manager/'}
-
-];
+  {path: 'manager', 
+    component: ManagerComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {path: 'mail', component: MailComponent},
+      {path: 'mail/:emailId', component: MailDetailComponent},
+      {path: 'clients', component: ClientsComponent},
+      {path: 'client/:clientId', component: ClientDetailComponent}
+    ]
+  }];
 
 
 export const managerRouting: ModuleWithProviders =
-  RouterModule.forRoot(managerRoutes);
+  RouterModule.forChild(managerRoutes);
 
 

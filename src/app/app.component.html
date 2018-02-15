@@ -12,7 +12,9 @@
       <div class="ui-g-12">
         <nav>
           <p-menubar [model]="items">
-            <button pButton label="Receive Emails" icon="fa-refresh" (click)="refreshMailbox()"></button>
+               <span class="ui-button label label-default ui-all" >New Emails
+               <span class="badge">5</span></span>
+            <button pButton label="Check" icon="fa-refresh" (click)="refreshMailbox()"></button>
             <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
           </p-menubar>
         </nav>

@@ -28,7 +28,8 @@ export class ClientModalComponent implements OnInit {
     this.clientform = this.fb.group({
       'id': new FormControl(client ? client.id : ''),
       'firstName': new FormControl(client ? client.firstName : '', Validators.required),
-      'lastName': new FormControl(client ? client.lastName : '', Validators.required)
+      'lastName': new FormControl(client ? client.lastName : '', Validators.required),
+      'email': new FormControl(client ? client.email : '', [Validators.required, Validators.email])
     });
   }
 

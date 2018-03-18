@@ -1,5 +1,5 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
-import {PanelMenuModule,MenuModule,MenuItem} from 'primeng/primeng';
+import { Component, ChangeDetectorRef, OnInit, AfterViewChecked } from '@angular/core';
+import {PanelMenuModule, MenuModule, MenuItem} from 'primeng/primeng';
 import { MailboxService } from './services/mailbox.service';
 import { UserService } from './services/user.service';
 import { Router, ActivatedRoute} from '@angular/router';
@@ -9,16 +9,15 @@ import { Router, ActivatedRoute} from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  private items: MenuItem[];
+export class AppComponent implements OnInit, AfterViewChecked {
+  items: MenuItem[];
   title = 'app';
-  
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private _mailboxService: MailboxService,
-     private userService: UserService , 
-     private cdRef:ChangeDetectorRef) { }
+     private userService: UserService ,
+     private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.items = [
@@ -31,7 +30,7 @@ private refreshMailbox() {
   .subscribe(
     t => console.log(t.message)
   );
-//TODO: show message 'refreshed'
+// TODO: show message 'refreshed'
 }
 
 get isUser() {
@@ -43,7 +42,7 @@ logout() {
   this.router.navigate(['/']);
 }
 
-ngAfterViewChecked() { 
+ngAfterViewChecked() {
   // Avoid the error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked
   this.cdRef.detectChanges();
 }

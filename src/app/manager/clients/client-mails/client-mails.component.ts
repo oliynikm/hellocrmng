@@ -9,9 +9,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './client-mails.component.html',
   styleUrls: ['./client-mails.component.css']
 })
-export class ClientMailsComponent implements OnInit {
+export class ClientMailsComponent implements OnInit, OnChanges {
 
-  
+
  @Input() clientId: string;
  errorMessage: any;
  mails: IMail[];
@@ -21,12 +21,12 @@ export class ClientMailsComponent implements OnInit {
   private router: Router,
   private _mailService: MailService) { }
 
- ngOnInit(){
+ ngOnInit() {
   }
 
- ngOnChanges(changes:SimpleChanges) {
-   this.clientId=changes['clientId'].currentValue;
-   if(this.clientId!=''){
+ ngOnChanges(changes: SimpleChanges) {
+   this.clientId = changes['clientId'].currentValue;
+   if (this.clientId !== '') {
      this.geClientMessages(this.clientId);
    }
  }
@@ -35,7 +35,8 @@ export class ClientMailsComponent implements OnInit {
      this._mailService.getClientMessages(clientId)
        .subscribe(
          mails => {this.mails = mails;
-         console.log(JSON.stringify(this.mails))},
+         console.log(JSON.stringify(this.mails));
+        },
          error => this.errorMessage = <any>error
        );
  }

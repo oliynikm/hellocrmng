@@ -10,12 +10,13 @@ import { Location } from '@angular/common';
 })
 export class MailDetailComponent implements OnInit {
   private emailId: number;
+  sender: IClient;
   errorMessage: any;
   mail: IMail;
- 
+
 
   constructor(private route: ActivatedRoute,
-    private _mailService: MailService,
+    private mailService: MailService,
     private location: Location) { }
 
   ngOnInit() {
@@ -24,10 +25,37 @@ export class MailDetailComponent implements OnInit {
   }
 
   getMailDetail(emailId) {
-    this._mailService.getMailDetails(emailId)
+    this.mailService.getMailDetails(emailId)
       .subscribe(
-      mail => this.mail = mail,
-      error => this.errorMessage = <any>error
+        mail => {this.mail = mail;
+          this.getSender(mail);
+        },
+        error => this.errorMessage = <any>error
+      );
+  }
+
+  getSender(mail: IMail) {
+    if (mail.client) {
+      this.sender = mail.client;
+    } else if (mail.sender) {
+      this.sender = new (class Client implements IClient {
+        id: number;
+        firstName = mail.sender.personal;
+        lastName: string;
+        email = mail.sender.address;
+      });
+    }
+  }
+
+  markRead(email: IMail) {
+    email.state = 'Read';
+    console.log(email);
+this.mailService.updateMailDetails(email)
+      .subscribe(
+        savedEmail => {this.mail = savedEmail;
+          this.getSender(savedEmail);
+        },
+        error => this.errorMessage = <any>error
       );
   }
 

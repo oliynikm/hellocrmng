@@ -11,41 +11,23 @@ import { ClientModalComponent } from '../client-modal/client-modal.component';
 })
 export class ClientDetailComponent implements OnInit {
 
-  private clientId: number;
+  clientId: number;
   errorMessage: any;
   client: IClient;
-  @ViewChild('clientModal') clientModal: ClientModalComponent;
-  
+
   constructor(private route: ActivatedRoute,
     private _clientService: ClientsService,
     private location: Location) { }
 
   ngOnInit() {
     this.clientId = +this.route.snapshot.paramMap.get('clientId');
-    this.getClientDetail(this.clientId);
+    console.log(this.clientId);
   }
 
-  getClientDetail(clientId) {
-    this._clientService.getClientDetails(clientId)
-      .subscribe(
-      client => this.client = client,
-      error => this.errorMessage = <any>error
-      );
-  }
+
 
   goBack(): void {
     this.location.back();
   }
-
-  editClient(client:IClient){
-    this.clientModal.showToEdit(client);
-    
-    }
-
-    onSaved(saved: boolean) {
-      if(saved){
-        this.getClientDetail(this.clientId);
-      }
-    }
 
 }

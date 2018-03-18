@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {MenuModule,PanelMenuModule,MenubarModule,MenuItem,ButtonModule, SidebarModule,DialogModule} from 'primeng/primeng';
+import {MenuModule, PanelMenuModule, MenubarModule, MenuItem, ButtonModule, SidebarModule, DialogModule} from 'primeng/primeng';
 
 import { MailService } from './services/mail.service';
 import { HttpModule } from '@angular/http';
@@ -43,14 +43,14 @@ export function authHttpServiceFactory(http: Http) {
     BrowserModule,
     MenubarModule,
     HttpModule,
-    ManagerModule, 
+    ManagerModule,
     PanelMenuModule,
     DialogModule,
     MenuModule,
     SidebarModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
-    ButtonModule,    
+    ButtonModule,
     appRouting
   ],
   providers: [
@@ -58,8 +58,9 @@ export function authHttpServiceFactory(http: Http) {
     AuthenticationService,
     UserService,
     AuthGuard,
-    MailService, 
-    ClientsService, 
+    MailService,
+    BrowserAnimationsModule,
+    ClientsService,
     MailboxService],
   bootstrap: [AppComponent]
 })

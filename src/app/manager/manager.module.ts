@@ -12,12 +12,14 @@ import { ClientMailsComponent } from './clients/client-mails/client-mails.compon
 import { ClientModalComponent } from './clients/client-modal/client-modal.component';
 import { MailDetailComponent } from './mail/mail-detail/mail-detail.component';
 import { MailListComponent } from './mail/mail-list/mail-list.component';
+import { MailCardComponent } from './mail/mail-card/mail-card.component';
+import { ClientProfileComponent } from './clients/client-profile/client-profile.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     ButtonModule,
     DataTableModule,
@@ -32,6 +34,8 @@ import { MailListComponent } from './mail/mail-list/mail-list.component';
     ClientMailsComponent,
     ClientModalComponent,
     MailDetailComponent,
-    MailListComponent]
+    MailListComponent,
+    MailCardComponent,
+    ClientProfileComponent]
 })
 export class ManagerModule { }

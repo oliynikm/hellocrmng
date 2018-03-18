@@ -10,18 +10,25 @@ import {UserService} from '../services/user.service';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, 
+  constructor(private router: Router,
     private userService: UserService) {
   }
 
-  //TODO: check code style
-  canActivate(route: ActivatedRouteSnapshot, 
-    state: RouterStateSnapshot): boolean {
+  // TODO: check code style
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    console.log(TOKEN_NAME + ' : ' + this.userService.accessToken + ' outlet ' +     route.outlet);
+
     if (tokenNotExpired(TOKEN_NAME, this.userService.accessToken)) {
+      console.log('r' + tokenNotExpired(TOKEN_NAME, this.userService.accessToken));
       return true;
     } else {
-      this.router.navigate(['login'], {queryParams: {redirectTo: state.url}});
+      console.log('s');
+      this.router.navigate(['/login'], {queryParams: {redirectTo: state.url}});
       return false;
     }
+  }
+
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    return this.canActivate(route, state);
   }
 }

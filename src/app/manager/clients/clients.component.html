@@ -1,5 +1,6 @@
-<div class="col-md-6 col-xs-12">
-    <p-dataTable [value]="clients"  selectionMode="single" [(selection)]="selectedClient" (onRowSelect)="goToClientDetails(selectedClient.id)"
+<div class="ui-g-10 ui-g-offset-1 ">
+        <input #gb type="text" placeholder="Search for client">
+    <p-dataTable [value]="clients" [globalFilter]="gb" selectionMode="single" [(selection)]="selectedClient" (onRowSelect)="goToClientDetails(selectedClient.id)"
         [rows]="10" [paginator]="true" [pageLinks]="3" [responsive]="true">
         <p-header>Clients</p-header>
         <p-column field="id" header="Id" [sortable]="true"></p-column>

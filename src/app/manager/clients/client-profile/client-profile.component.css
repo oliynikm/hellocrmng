@@ -1,0 +1,10 @@
+.avatar {
+    border-radius: 50%;
+    background: maroon;
+      display: inline-block;
+      padding: 15px;
+      font-size: 25px;
+      color:white;
+      font-family:"Courier New", monospace;
+      margin: 10px
+} 

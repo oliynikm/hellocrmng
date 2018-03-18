@@ -10,27 +10,27 @@ import { SlicePipe } from '@angular/common';
   templateUrl: './mail-list.component.html',
   styleUrls: ['./mail-list.component.css']
 })
-export class MailListComponent implements OnInit {
-  
+export class MailListComponent implements OnInit, OnChanges {
+
   @Input() mails: IMail[];
-  
-  
+
+
    constructor(private route: ActivatedRoute ,
     private router: Router,
     private _mailService: MailService) { }
-  
-   ngOnInit(){
+
+   ngOnInit() {
     }
-  
-   ngOnChanges(changes:SimpleChanges) {
-     this.mails=changes['mails'].currentValue;
+
+   ngOnChanges(changes: SimpleChanges) {
+     this.mails = changes['mails'].currentValue;
    }
-  
-   goToMailDetails(id){
-    this.router.navigate(['manager/mail',id]); 
+
+   goToMailDetails(id) {
+    this.router.navigate(['manager/mail', id]);
   }
-  
-  getStyleClass(client: IClient){
+
+  getStyleClass(client: IClient) {
     return 'unread';
   }
 

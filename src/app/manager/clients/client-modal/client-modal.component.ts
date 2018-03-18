@@ -8,14 +8,15 @@ import { ClientsService } from '../../../services/clients.service';
   styleUrls: ['./client-modal.component.css']
 })
 export class ClientModalComponent implements OnInit {
-  private newClient: boolean = false;
-  private display: boolean = false;
-  private clientform: FormGroup;
+  private newClient = false;
   private errorMessage: any;
   private clientInfo: string;
+  display = false;
+  clientform: FormGroup;
+
 
   @Input() private client: IClient;
-  @Output() onSaved = new EventEmitter<boolean>();
+  @Output() onSaved = new EventEmitter<IClient>();
 
   constructor(private _clientService: ClientsService,
     private fb: FormBuilder) { }
@@ -39,7 +40,7 @@ export class ClientModalComponent implements OnInit {
       .subscribe(
       client => {
       this.client = client;
-        this.onSaved.emit(true);
+        this.onSaved.emit(client);
         this.clientInfo = JSON.stringify(this.client);
         this.display = false;
         this.initForm(null);

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {JwtHelper} from 'angular2-jwt';
-
 import {TOKEN_NAME} from '../services/auth.constant';
 
 @Injectable()
@@ -8,9 +7,9 @@ export class UserService {
   jwtHelper: JwtHelper = new JwtHelper();
   accessToken: string;
   isAdmin: boolean;
-
   constructor() {
   }
+
 
   login(accessToken: string) {
     const decodedToken = this.jwtHelper.decodeToken(accessToken);
@@ -33,6 +32,6 @@ export class UserService {
   }
 
   isUser(): boolean {
-    return this.accessToken && !this.isAdmin;
+    return this.accessToken && true;
   }
 }

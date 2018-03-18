@@ -1,13 +1,26 @@
-<button pButton class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" label="go back" icon="fa-backward" (click)="goBack()"></button>
-<div *ngIf="mail" class="ui-fieldset">
-	<div class="ui-fieldset-legend"> mail body
-			<button type="button" pButton icon="fa-reply" style="float:right"  label="Reply"></button>
+<div class="ui-g-12">
+	<button pButton label="return" icon="fa-backward" (click)="goBack()"></button>
+</div>
+<div *ngIf="mail" class="ui-g-10">
+	<div class="ui-g-12">
+		<app-mail-card [mail]="mail"></app-mail-card>
 	</div>
+
+	<button type="button" pButton icon="fa-reply" label="Reply"></button>
+	<button type="button" pButton icon="fa-envelope-open-o" label="Read" (click)="markRead(mail)" >	<span *ngIf="mail.state=='New'">
+		<span class="label label-primary fa fa-envelope-o" style="font-size:1em"> </span>
+	
+	</span>
+	<span *ngIf="mail.state!='New'">
+			<span class="label label-info fa fa-envelope-open-o" style="font-size:1em"> </span>
+	</span></button>
+
 	<!-- TODO: ngIf text|html -->
-	<div class="ui-fieldset-content">
-		<pre>
+	<pre class="pre-scrollable">
 		{{mail.body}}
 		</pre>
-	</div>
-		<!-- TODO: ngIf hasAttachments -->
+	<!-- TODO: ngIf hasAttachments -->
+</div>
+<div *ngIf="mail" class="ui-g-2"> 
+		   <app-client-profile [client]="sender"></app-client-profile>
 </div>

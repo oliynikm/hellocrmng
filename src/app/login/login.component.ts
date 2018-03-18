@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'
+import { NgForm } from '@angular/forms';
 import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
-import {Router, ActivatedRoute} from '@angular/router';
-import {AuthenticationService} from '../services/authentication.service';
-import {UserService} from '../services/user.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -16,31 +16,33 @@ import {UserService} from '../services/user.service';
 export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
-  private display: boolean = true;
+  private display = true;
   error = '';
   redirectUrl: string;
   private loginform: FormGroup;
 
   constructor(private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private authenticationService: AuthenticationService,
-              private userService: UserService,private fb: FormBuilder) {
+    private activatedRoute: ActivatedRoute,
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private fb: FormBuilder) {
     this.redirectUrl = this.activatedRoute.snapshot.queryParams['redirectTo'];
+    console.log(this.redirectUrl);
   }
 
   ngOnInit(): void {
-        this.userService.logout();
-        this.loginform = this.fb.group({
-          'login': new FormControl( '', Validators.required),
-          'password': new FormControl('', Validators.required)
-        });
+    this.userService.logout();
+    this.loginform = this.fb.group({
+      'login': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required)
+    });
   }
 
   login() {
     this.loading = true;
 
-    this.authenticationService.login(this.loginform.get('login').value, 
-            this.loginform.get('password').value)
+    this.authenticationService.login(this.loginform.get('login').value,
+      this.loginform.get('password').value)
       .subscribe(
         result => {
           this.loading = false;
@@ -63,7 +65,7 @@ export class LoginComponent implements OnInit {
     if (this.redirectUrl) {
       this.router.navigateByUrl(this.redirectUrl);
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/manager']);
     }
   }
 

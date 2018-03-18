@@ -1,0 +1,20 @@
+<div *ngIf="client?.id" class="panel panel-primary" style="text-align: center">
+    
+    <button class="avatar bg-info text-uppercase" (click)="goToClientInfo()">{{client.firstName | slice:0:1}}{{client.lastName | slice:0:1}}</button>
+
+<h4>{{client.firstName}} {{client.lastName}}</h4>
+<h5>{{client.email}}</h5>
+<p>id:{{client.id}}</p>
+  <button type="button" pButton icon="fa-plus" 
+   (click)="editClient(client)" label="Edit"></button>
+
+</div>
+<div *ngIf="!client?.id" class="panel panel-primary" style="text-align: center">
+    <span class="avatar bg-warning" style="padding: 15px 25px">?</span><br>
+        <button type="button" pButton icon="fa-user-plus" 
+        (click)="editClient(client)" label="Add Client"></button>
+        <br><br>
+        <button type="button" pButton icon="fa-address-card" 
+        (click)="editClient(client)" label="Existing Client"></button>
+</div>
+<app-client-modal #clientModal (onSaved)="onSaved($event)"></app-client-modal>

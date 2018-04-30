@@ -16,10 +16,10 @@ import { UserService } from '../services/user.service';
 export class LoginComponent implements OnInit {
   model: any = {};
   loading = false;
-  private display = true;
+  display = true;
   error = '';
   redirectUrl: string;
-  private loginform: FormGroup;
+  loginform: FormGroup;
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder) {
     this.redirectUrl = this.activatedRoute.snapshot.queryParams['redirectTo'];
-    console.log(this.redirectUrl);
   }
 
   ngOnInit(): void {

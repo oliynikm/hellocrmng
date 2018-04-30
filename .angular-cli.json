@@ -23,11 +23,14 @@
         "../node_modules/primeng/resources/themes/bootstrap/theme.css",
         "../node_modules/bootstrap/dist/css/bootstrap.min.css", 
         "../node_modules/primeng/resources/primeng.min.css",
+        "../node_modules/quill/dist/quill.core.css", 
+        "../node_modules/quill/dist/quill.snow.css",
         "../src/assets/css/bootstrap.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/quill/dist/quill.js",
         "../node_modules/moment/moment.js"
       ],
       "environmentSource": "environments/environment.ts",

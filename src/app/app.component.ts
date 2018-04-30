@@ -1,8 +1,8 @@
 import { Component, ChangeDetectorRef, OnInit, AfterViewChecked } from '@angular/core';
-import {PanelMenuModule, MenuModule, MenuItem} from 'primeng/primeng';
+
 import { MailboxService } from './services/mailbox.service';
 import { UserService } from './services/user.service';
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,41 +10,40 @@ import { Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewChecked {
-  items: MenuItem[];
   title = 'app';
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private _mailboxService: MailboxService,
-     private userService: UserService ,
-     private cdRef: ChangeDetectorRef) { }
+    private userService: UserService,
+    private cdRef: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.items = [
-  ];
-}
+  }
 
 
-private refreshMailbox() {
-  this._mailboxService.refreshMailbox()
-  .subscribe(
-    t => console.log(t.message)
-  );
-// TODO: show message 'refreshed'
-}
+  private refreshMailbox() {
+    this._mailboxService.refreshMailbox()
+      .subscribe(
+        t => alert(t.message)
+      );
+  }
 
-get isUser() {
-  return this.userService.isUser();
-}
+  get isUser() {
+    return this.userService.isUser();
+  }
+  get userName() {
+    return this.userService.getUserName();
+  }
 
-logout() {
-  this.userService.logout();
-  this.router.navigate(['/']);
-}
+  logout() {
+    this.userService.logout();
+    this.router.navigate(['/login']);
+  }
 
-ngAfterViewChecked() {
-  // Avoid the error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked
-  this.cdRef.detectChanges();
-}
+  ngAfterViewChecked() {
+    // Avoid the error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked
+    this.cdRef.detectChanges();
+  }
 
 }

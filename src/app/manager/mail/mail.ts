@@ -1,16 +1,16 @@
 
 interface IMail {
   id: number;
-  sender: ISender;
-  state: String;
+  direction: string;
+  sender: string;
+  recepient: string;
+  state: string;
   body: string;
+  bodyType: string;
   client: IClient;
   description: string;
   address: string;
   messageId: string;
 }
 
-interface ISender {
-  address: string;
-  personal: string;
-}
+

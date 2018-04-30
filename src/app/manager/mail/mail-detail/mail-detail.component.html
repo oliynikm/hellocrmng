@@ -1,26 +1,29 @@
 <div class="ui-g-12">
-	<button pButton label="return" icon="fa-backward" (click)="goBack()"></button>
+	<button pButton label="Return" icon="fa-backward" (click)="goBack()"></button>
+	<span>|</span>
+	<button pButton label="Reply" *ngIf="mail"  icon="fa-reply" (click)="reply(mail)"></button>
+	<button pButton label="Read" *ngIf="mail?.state=='New'" icon="fa-envelope-open-o"  (click)="markRead(mail)" ></button>
+
+
+
 </div>
 <div *ngIf="mail" class="ui-g-10">
 	<div class="ui-g-12">
 		<app-mail-card [mail]="mail"></app-mail-card>
 	</div>
 
-	<button type="button" pButton icon="fa-reply" label="Reply"></button>
-	<button type="button" pButton icon="fa-envelope-open-o" label="Read" (click)="markRead(mail)" >	<span *ngIf="mail.state=='New'">
-		<span class="label label-primary fa fa-envelope-o" style="font-size:1em"> </span>
 	
-	</span>
-	<span *ngIf="mail.state!='New'">
-			<span class="label label-info fa fa-envelope-open-o" style="font-size:1em"> </span>
-	</span></button>
 
-	<!-- TODO: ngIf text|html -->
-	<pre class="pre-scrollable">
+	<p-editor *ngIf="mail.bodyType?.includes('text/html')" [(ngModel)]="mail.body" [style]="{'height':'320px'}" [readonly]="true">
+		    <p-header>
+				</p-header>
+	</p-editor>
+	<pre *ngIf="mail.bodyType?.includes('text/plain')" class="pre-scrollable">
 		{{mail.body}}
-		</pre>
+	</pre>
 	<!-- TODO: ngIf hasAttachments -->
 </div>
 <div *ngIf="mail" class="ui-g-2"> 
 		   <app-client-profile [client]="sender"></app-client-profile>
 </div>
+<app-mail-modal #mailModal ></app-mail-modal>

@@ -3,8 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 
 const defaultRoutes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: '**', redirectTo: '/'}
+  {path: 'login', component: LoginComponent}
 ];
 
 

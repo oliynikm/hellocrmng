@@ -1,9 +1,10 @@
-import {Component, Input, OnInit, SimpleChanges, OnChanges} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges, OnChanges, ViewChild} from '@angular/core';
 import { MailService } from '../../../services/mail.service';
 import { log } from 'util';
 import { MailboxService } from '../../../services/mailbox.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SlicePipe } from '@angular/common';
+import { MailModalComponent } from '../mail-modal/mail-modal.component';
 
 @Component({
   selector: 'app-mail-list',
@@ -13,7 +14,8 @@ import { SlicePipe } from '@angular/common';
 export class MailListComponent implements OnInit, OnChanges {
 
   @Input() mails: IMail[];
-
+  @ViewChild('mailModal') mailModal: MailModalComponent;
+  selectedEmail: IMail;
 
    constructor(private route: ActivatedRoute ,
     private router: Router,
@@ -27,11 +29,11 @@ export class MailListComponent implements OnInit, OnChanges {
    }
 
    goToMailDetails(id) {
-    this.router.navigate(['manager/mail', id]);
+    this.router.navigate(['manager/emails', id]);
   }
 
-  getStyleClass(client: IClient) {
-    return 'unread';
-  }
+  createMessage(): void {
+    this.mailModal.createNewMessage(null);
+    }
 
 }

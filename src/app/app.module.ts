@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import {MenuModule, PanelMenuModule, MenubarModule, MenuItem, ButtonModule, SidebarModule, DialogModule} from 'primeng/primeng';
+import {MenuModule, MenuItem, ButtonModule} from 'primeng/primeng';
 
 import { MailService } from './services/mail.service';
 import { HttpModule } from '@angular/http';
@@ -19,6 +19,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/auth.guard';
 import { TOKEN_NAME } from './services/auth.constant';
+import { AdminModule } from './admin/admin.module';
 
 
 export function authHttpServiceFactory(http: Http) {
@@ -41,13 +42,10 @@ export function authHttpServiceFactory(http: Http) {
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    MenubarModule,
     HttpModule,
     ManagerModule,
-    PanelMenuModule,
-    DialogModule,
+    AdminModule,
     MenuModule,
-    SidebarModule,
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,

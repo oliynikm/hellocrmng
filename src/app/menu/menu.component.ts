@@ -10,42 +10,36 @@ import { UserService } from '../services/user.service';
 
 export class MenuComponent implements OnInit {
 
-    private items: MenuItem[];
+    items: MenuItem[];
 
     constructor(private userService: UserService) { }
 
     ngOnInit() {
         this.items = [{
-            label: 'manager',
+            label: 'Manager Area',
 
             items: [{
-                label: 'clients',
+                label: 'Clients',
                 icon: 'fa-users',
                 routerLink: ['/manager/clients']
             },
             {
-                label: 'emails',
+                label: 'Emails',
                 icon: 'fa-envelope-open-o',
-                routerLink: ['/manager/mail']
-            }/* ,
-            {
-                label: 'todo',
-                icon: 'fa-check-square-o',
-                routerLink: ['/manager/todo']
-            } */]
+                routerLink: ['/manager/emails']
+            }]
         }];
 
         if (this.userService.isAdminUser()) {
             this.items = this.items.concat([{
-                label: 'admin',
-                routerLink: ['/admin'],
-                expanded: true,
+                label: 'Admin Area',
+
                 items: [{
-                    label: 'config',
+                    label: 'Configuration',
                     icon: 'fa-config',
                     routerLink: ['/admin/config']
                 }, {
-                    label: 'logs',
+                    label: 'Logs',
                     icon: 'fa-log',
                     routerLink: ['/admin/log']
                 }]

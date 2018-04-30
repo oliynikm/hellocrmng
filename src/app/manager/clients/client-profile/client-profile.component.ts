@@ -40,7 +40,7 @@ export class ClientProfileComponent implements OnInit {
     }
 
     goToClientInfo() {
-    this.router.navigate(['manager/client', this.client.id]);
+    this.router.navigate(['manager/clients', this.client.id]);
     }
 
     onSaved(client: IClient) {

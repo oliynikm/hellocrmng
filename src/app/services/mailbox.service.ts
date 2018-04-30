@@ -13,6 +13,13 @@ export class MailboxService {
   refreshMailbox():  Observable<any> {
     console.log('refreshing...');
     return this._http.get('/api/mailbox')
-    .map((response: Response) =>  response.json() );
+    .map((response: Response) => response.json());
+  }
+
+
+  sendMail(mail: String): Observable<any> {
+    console.log('sending...' + mail);
+    return this._http.post('/api/mailbox/', mail)
+    .map((response: Response) =>   response.json());
   }
 }

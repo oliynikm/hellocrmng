@@ -1,26 +1,24 @@
 <div *ngIf="isUser">
-  
-   
-   
-      <nav class="ui-g-2 ui-sm-12" style="height: 100%;">
-        <app-menu></app-menu>
-      </nav>
 
 
 
-    <div class="ui-g-10 ui-g-sm-12">
-      <div class="ui-g-12">
-        <nav>
-          <p-menubar [model]="items">
-            <button pButton label="Check" icon="fa-refresh" (click)="refreshMailbox()"></button>
-            <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
-          </p-menubar>
-        </nav>
-      </div>
-      <div class="ui-g-12">
-        <router-outlet></router-outlet>
-      </div>
+  <nav class="ui-g-2 ui-sm-12">
+    <app-menu></app-menu>
+  </nav>
+
+
+
+  <div class="ui-g-10 ui-g-sm-12">
+    <nav class="ui-g-12 border rounded">
+        <button pButton label="Check mailbox" icon="fa-refresh" (click)="refreshMailbox()" title="Get new emails"></button>
+      <span class="pull-right">
+       {{userName}}  <button pButton label="Logout" icon="fa-sign-out" (click)="logout()"></button>
+      </span>
+    </nav>
+    <div>
+      <router-outlet class="ui-g-12"></router-outlet>
     </div>
+  </div>
 
 </div>
 
@@ -28,5 +26,6 @@
 
 <div *ngIf="!isUser" class="ui-g" style="text-align: center; padding: 200px 0px 0px">
   <div class="ui-g-4 ui-g-offset-4">
-    <app-login></app-login>  </div>
+    <app-login></app-login>
+  </div>
 </div>

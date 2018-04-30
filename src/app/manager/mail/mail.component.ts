@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MailService } from '../../services/mail.service';
 import { SimpleChanges, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 import { log } from 'util';
 import { MailboxService } from '../../services/mailbox.service';
+import { MailModalComponent } from './mail-modal/mail-modal.component';
 
 @Component({
   selector: 'app-mail',
@@ -12,6 +13,7 @@ import { MailboxService } from '../../services/mailbox.service';
 export class MailComponent implements OnInit {
 
   @Input() clientId: string;
+
   errorMessage: any;
   mails: IMail[];
    allMessages = true;
@@ -24,7 +26,7 @@ export class MailComponent implements OnInit {
     this.getNewMessages();
   }
 
-  private getUnassignedMessages() {
+   getUnassignedMessages() {
        this._mailService.getUnassignedMessages()
       .subscribe(
         mails => {this.mails = mails;
@@ -35,7 +37,7 @@ export class MailComponent implements OnInit {
       );
   }
 
-  private getNewMessages() {
+  getNewMessages() {
     this._mailService.getNewMessages()
       .subscribe(
         mails => {this.mails = mails; this.resetFlags(); this.newMessages = true; },
@@ -43,7 +45,7 @@ export class MailComponent implements OnInit {
       );
   }
 
-  private getAllMessages() {
+   getAllMessages() {
     this._mailService.getAllMessages()
       .subscribe(
         mails => {this.mails = mails; this.resetFlags(); this.allMessages = true; },
@@ -56,5 +58,6 @@ export class MailComponent implements OnInit {
     this.newMessages = false;
     this.unassignedMessages = false;
   }
+
 
 }

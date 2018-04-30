@@ -1,6 +1,6 @@
-<div *ngIf="client?.id" class="panel panel-primary" style="text-align: center">
+<div *ngIf="client?.id" class="panel panel-primary clearfix" style="text-align: center">
     
-    <button class="avatar bg-info text-uppercase" (click)="goToClientInfo()">{{client.firstName | slice:0:1}}{{client.lastName | slice:0:1}}</button>
+    <a (click)="goToClientInfo()"><span class="avatar bg-info text-uppercase" >{{client.firstName | slice:0:1}}{{client.lastName | slice:0:1}}</span></a>
 
 <h4>{{client.firstName}} {{client.lastName}}</h4>
 <h5>{{client.email}}</h5>
@@ -13,8 +13,5 @@
     <span class="avatar bg-warning" style="padding: 15px 25px">?</span><br>
         <button type="button" pButton icon="fa-user-plus" 
         (click)="editClient(client)" label="Add Client"></button>
-        <br><br>
-        <button type="button" pButton icon="fa-address-card" 
-        (click)="editClient(client)" label="Existing Client"></button>
 </div>
 <app-client-modal #clientModal (onSaved)="onSaved($event)"></app-client-modal>

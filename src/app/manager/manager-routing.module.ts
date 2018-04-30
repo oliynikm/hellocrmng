@@ -16,10 +16,10 @@ const managerRoutes: Routes = [
 
         canActivateChild: [AuthGuard],
         children: [
-          { path: 'mail', component: MailComponent },
-          { path: 'mail/:emailId', component: MailDetailComponent },
+          { path: 'emails', component: MailComponent },
+          { path: 'emails/:emailId', component: MailDetailComponent },
           { path: 'clients', component: ClientsComponent },
-          { path: 'client/:clientId', component: ClientDetailComponent }
+          { path: 'clients/:clientId', component: ClientDetailComponent }
         ]
 
   }];

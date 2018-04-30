@@ -28,10 +28,10 @@ export class ClientsService {
 
 
     saveClient(client): Observable<IClient> {
-        
-                return this._http.post('/api/clients/',client)
-                    .map((response: Response) => <IClient>response.json());
-            }
+
+        return this._http.post('/api/clients/', client)
+            .map((response: Response) => <IClient>response.json());
+    }
 
 }
 

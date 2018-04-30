@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+.loader {
+    border: 10px solid #f3f3f3; /* Light grey */
+    border-top: 10px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
+.center span {
+    margin: 0;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.ui-menu{
+    width: 100% !important;
+}
+
+
+.ui-button{
+padding: initial !important;
+}
+
+.ui-submenu-header{
+    background: #28a745 !important;
+    color: #fff!important;
+}

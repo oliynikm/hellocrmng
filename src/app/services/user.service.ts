@@ -7,6 +7,7 @@ export class UserService {
   jwtHelper: JwtHelper = new JwtHelper();
   accessToken: string;
   isAdmin: boolean;
+  userName: string;
   constructor() {
   }
 
@@ -14,7 +15,8 @@ export class UserService {
   login(accessToken: string) {
     const decodedToken = this.jwtHelper.decodeToken(accessToken);
     console.log(decodedToken);
-
+    this.userName = decodedToken.user_name;
+    console.log(this.userName);
     this.isAdmin = decodedToken.authorities.some(el => el === 'ADMIN_USER');
     this.accessToken = accessToken;
 
@@ -33,5 +35,9 @@ export class UserService {
 
   isUser(): boolean {
     return this.accessToken && true;
+  }
+
+  getUserName() {
+    return this.userName;
   }
 }

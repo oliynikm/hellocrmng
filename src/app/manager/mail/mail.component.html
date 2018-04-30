@@ -1,8 +1,8 @@
-<div style="text-align: center"><button pButton [class.bg-success]="newMessages" (click)="getNewMessages()" label="new"></button> 
-<button pButton [class.bg-success]="allMessages" (click)="getAllMessages()" label="all"></button> 
-<button pButton [class.bg-success]="unassignedMessages" (click)="getUnassignedMessages()" label="unassigned"></button>
+<div style="text-align: center">
+ 
+    <button pButton [class.bg-success]="newMessages" (click)="getNewMessages()" label="Unread"></button>
+    <button pButton [class.bg-success]="unassignedMessages" (click)="getUnassignedMessages()" label="Unassigned"></button>
+    <button pButton [class.bg-success]="allMessages" (click)="getAllMessages()" label="All"></button>
+
 </div>
-<app-mail-list [mails]="mails"></app-mail-list> 
-
-
-
+<app-mail-list [mails]="mails"></app-mail-list>

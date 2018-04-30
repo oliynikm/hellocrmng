@@ -1,12 +1,21 @@
 <div class="ui-g-10 ui-g-offset-1 ">
-	<input #gb type="text" placeholder="Search for mail">
-	<p-dataTable [value]="mails" [globalFilter]="gb" selectionMode="single" [rowStyleClass]="getStyleClass" [(selection)]="selectedEmail" (onRowSelect)="goToMailDetails(selectedEmail.id)"
+	
+	<p-dataTable [value]="mails"  [globalFilter]="gb" selectionMode="single"  [(selection)]="selectedEmail" (onRowSelect)="goToMailDetails(selectedEmail.id)"
 	 [rows]="10" [paginator]="true" [pageLinks]="3" [responsive]="true">
-		<p-header>
-			<span *ngIf="mails">{{mails.length}}</span> emails</p-header>
+		<p-header style="text-align: left">&nbsp;
+			<button class="pull-left" pButton (click)="createMessage()" label="Create" title="Create new email"></button>
+
+			<span  class="pull-right"><input #gb type="text" placeholder="Search emails"></span></p-header>
 		<p-column [style]="{'width':'8%'}" >
 			<ng-template let-col let-mail="rowData" pTemplate="body">
 				<span *ngIf="mail.interactionType=='EMAIL'">
+					<span *ngIf="mail.direction=='INBOUND'">
+						<span class="fa fa-angle-double-right" style="font-size:1.5em"> </span>
+					
+					</span>
+					<span *ngIf="mail.direction=='OUTBOUND'">
+							<span class="fa fa-angle-double-left" style="font-size:1.5em"> </span>
+					</span>
 					<span *ngIf="mail.state=='New'">
 						<span class="label label-primary fa fa-envelope-o" style="font-size:1em"> </span>
 					
@@ -17,24 +26,30 @@
 				</span>
 			</ng-template>
 		</p-column>
-		<p-column header="Client" >
+		<p-column header="From" [style]="{'width':'20%'}">
 			<ng-template let-col let-mail="rowData" pTemplate="body">
 
-				<span *ngIf="mail.client">
-					{{mail.client.lastName}} {{mail.client.firstName}} {{mail.client.email}}</span>
-				<span *ngIf="!mail.client">
-					<span *ngIf="mail.sender">{{mail.sender.personal}} {{mail.sender.address}}</span>
-					<span class="label label-default fa fa-user-secret" style="font-size:1em"> </span>
-				</span>
+				<span *ngIf="mail.client && mail.sender && mail.sender===mail.client.email">
+					{{mail.client.lastName}} {{mail.client.firstName}}</span>
+					<span *ngIf="mail.sender">{{mail.sender}}</span>
 			</ng-template>
 		</p-column>
-		<p-column header="From"  field="address" [sortable]="true"></p-column>
-		<p-column header="Subject" field="description"  filterMatchMode="contains"  [sortable]="true" [style]="{'width':'50%'}">
+		<p-column header="To" [sortable]="true" [style]="{'width':'20%'}">
+				<ng-template let-col let-mail="rowData" pTemplate="body">
+				<span *ngIf="mail.client && mail.recepient && mail.recepient===mail.client.email">
+						{{mail.client.lastName}} {{mail.client.firstName}}</span>
+						<span *ngIf="mail.recepient">{{mail.recepient}}</span>
+					</ng-template>
+		</p-column>
+		<p-column header="Subject" field="description"  filterMatchMode="contains"  [sortable]="true" [style]="{'width':'40%'}">
 		</p-column>
 
 		<p-column field="created" [sortable]="true"></p-column>
 		
 	</p-dataTable>
-	<br>
+	
 
 </div>
+
+
+<app-mail-modal #mailModal ></app-mail-modal>

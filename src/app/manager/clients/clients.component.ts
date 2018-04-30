@@ -1,7 +1,7 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {ClientsService} from '../../services/clients.service';
 import { MailService } from '../../services/mail.service';
-import {ActivatedRoute,Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { ClientModalComponent } from './client-modal/client-modal.component';
 
 @Component({
@@ -12,9 +12,11 @@ import { ClientModalComponent } from './client-modal/client-modal.component';
 export class ClientsComponent implements OnInit {
   errorMessage: any;
   clients: IClient[];
-  selectedClientId: string='';
-  display:boolean = false;
-  modal:boolean=true;
+  selectedClient: IClient;
+  selectedClientId = '';
+  display = false;
+  modal = true;
+
 @ViewChild('clientModal') clientModal: ClientModalComponent;
 
   constructor(private route: ActivatedRoute ,
@@ -26,7 +28,7 @@ export class ClientsComponent implements OnInit {
   }
 
   private getClients() {
-    this.clients=null;
+    this.clients = null;
     this._clientService.getClients()
       .subscribe(
         clients => this.clients = clients,
@@ -34,22 +36,22 @@ export class ClientsComponent implements OnInit {
       );
 
   }
-  getClientMessages(client){
-    if(client.id!=''){
-      this.selectedClientId=client.id;    
+  getClientMessages(client) {
+    if ( client.id !== '') {
+      this.selectedClientId = client.id;
     }
   }
 
-  goToClientDetails(id){
-    this.router.navigate(['manager/client',id]); 
+  goToClientDetails(id) {
+    this.router.navigate(['manager/clients', id]);
   }
 
-addClient(){
+addClient() {
 this.clientModal.showToAdd();
 }
 
 onSaved(saved: boolean) {
-  if(saved){
+  if (saved) {
     this.getClients();
   }
 }

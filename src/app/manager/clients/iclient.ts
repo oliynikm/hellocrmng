@@ -1,6 +1,6 @@
 interface IClient {
   id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
+  firstName: String;
+  lastName: String;
+  email: String;
 }

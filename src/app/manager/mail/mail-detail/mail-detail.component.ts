@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MailService } from '../../../services/mail.service';
 import { Location } from '@angular/common';
+import { MailModalComponent } from '../mail-modal/mail-modal.component';
 
 @Component({
   selector: 'app-mail-detail',
@@ -9,11 +10,12 @@ import { Location } from '@angular/common';
   styleUrls: ['./mail-detail.component.css']
 })
 export class MailDetailComponent implements OnInit {
+
+  @ViewChild('mailModal') mailModal: MailModalComponent;
   private emailId: number;
   sender: IClient;
   errorMessage: any;
   mail: IMail;
-
 
   constructor(private route: ActivatedRoute,
     private mailService: MailService,
@@ -40,9 +42,9 @@ export class MailDetailComponent implements OnInit {
     } else if (mail.sender) {
       this.sender = new (class Client implements IClient {
         id: number;
-        firstName = mail.sender.personal;
-        lastName: string;
-        email = mail.sender.address;
+        firstName: String;
+        lastName: String;
+        email = mail.sender;
       });
     }
   }
@@ -62,4 +64,10 @@ this.mailService.updateMailDetails(email)
   goBack(): void {
     this.location.back();
   }
+
+  reply(email: IMail): void {
+    this.markRead(email);
+    this.mailModal.showToReply(email);
+    }
+
 }

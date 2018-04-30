@@ -6,7 +6,7 @@ import { managerRouting } from './manager-routing.module';
 import { ClientsComponent } from './clients/clients.component';
 import { BrowserModule } from '@angular/platform-browser/src/browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InputTextModule, ButtonModule, DataTableModule, DialogModule } from 'primeng/primeng';
+import { InputTextModule, ButtonModule, DialogModule, DataTableModule} from 'primeng/primeng';
 import { ClientDetailComponent } from './clients/client-detail/client-detail.component';
 import { ClientMailsComponent } from './clients/client-mails/client-mails.component';
 import { ClientModalComponent } from './clients/client-modal/client-modal.component';
@@ -14,7 +14,9 @@ import { MailDetailComponent } from './mail/mail-detail/mail-detail.component';
 import { MailListComponent } from './mail/mail-list/mail-list.component';
 import { MailCardComponent } from './mail/mail-card/mail-card.component';
 import { ClientProfileComponent } from './clients/client-profile/client-profile.component';
-
+import { MailModalComponent } from './mail/mail-modal/mail-modal.component';
+import {EditorModule} from 'primeng/editor';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 @NgModule({
   imports: [
@@ -22,8 +24,10 @@ import { ClientProfileComponent } from './clients/client-profile/client-profile.
     FormsModule,
     ReactiveFormsModule,
     ButtonModule,
-    DataTableModule,
     DialogModule,
+    EditorModule,
+    DataTableModule,
+    ScrollPanelModule,
     managerRouting
   ],
   declarations: [
@@ -36,6 +40,7 @@ import { ClientProfileComponent } from './clients/client-profile/client-profile.
     MailDetailComponent,
     MailListComponent,
     MailCardComponent,
-    ClientProfileComponent]
+    ClientProfileComponent,
+    MailModalComponent]
 })
 export class ManagerModule { }

@@ -1,11 +1,7 @@
 # HelloCRM UI
-Open-source CRM system 
-
-This is UI part 
-
-[Backend part](https://github.com/oliynikm/hellocrm)
-
+UI part of CRM system concept
 Using: 
 * Angular 4,
 * PrimeNG
 
+[Backend part](https://github.com/oliynikm/hellocrm)
